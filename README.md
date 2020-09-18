@@ -1,4 +1,6 @@
-# My Personal Wiki
+[Parent](../README.md)
+
+# Baru 的笔记
 
 - [Stuff to Buy](docs/stuff_to_buy.md)
 - [Movies to Watch](docs/movies_to_watch.md)
