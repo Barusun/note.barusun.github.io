@@ -3,6 +3,6 @@
 # Baru 的笔记
 
 - [Coding](docs/)
-- [Movies to Watch](docs/movies_to_watch.md)
+- [Command](docs/command/)
 - [Birthdays](docs/birthdays.md)
 - [Projects](docs/projects.md)
