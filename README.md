@@ -4,5 +4,6 @@
 
 - [Coding](docs/)
 - [Command](docs/command/)
-- [Birthdays](docs/birthdays.md)
+- [Document](docs/birthdays.md)
 - [Projects](docs/projects.md)
+
