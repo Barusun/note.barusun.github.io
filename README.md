@@ -1,9 +1,9 @@
 [Parent](../README.md)
 
-# Baru 的笔记
+# The Note of Baru 
 
-- [Coding](docs/)
+- [Coding](docs/coding)
 - [Command](docs/command/)
-- [Document](docs/birthdays.md)
+- [Document](docs/document/)
 - [Projects](docs/projects.md)
 
