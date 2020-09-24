@@ -772,13 +772,45 @@ ls -l /proc/5454/fd/
 ### grep命令
 
 ~~~shell
+grep -v 用法
 #不匹配带t的行
 grep -v t test1
+## grep的 \| 用法 
+# cat txt
+1
+2
+3
+4
+4
+5
+6
+# grep -v 1 txt
+2
+3
+4
+4
+5
+6
+# grep -v '1\|2' txt （不要1和2）
+3
+4
+4
+5
+6
+# grep -v '1\|2\|4' txt （不要1 2 4）
+3
+5
+6
+~~~
+
+~~~shell
 #匹配多个字段
 grep -e t -e f test1 (含有t或者f的行)
 #关键字附近几行
 grep -A 5 后面5行  grep -B 5 前面5行
 ~~~
+
+
 
 ### git命令
 
@@ -921,7 +953,18 @@ end
 apt-get install -y openjdk-8-jdk
 ~~~
 
+### Java
 
+~~~shell
+#分析Java内存情况
+jmap –dump:live,format=b,file=heap.bin <pid>
+#图形化分析，起7000端口（自己没验证）
+jhat -J-mx768m -port 7000 heap.dmp
+~~~
+
+参考文档：[Jvm dump介绍与使用（内存与线程）](https://www.cnblogs.com/orionhp/p/6362718.html)
+
+​				 	[Oracle官方jmp资料](http://docs.oracle.com/javase/6/docs/technotes/tools/share/jmap.html)
 
 ## K
 
