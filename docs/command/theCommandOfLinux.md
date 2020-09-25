@@ -890,6 +890,27 @@ iptables -t mangle -I POSTROUTING -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMS
 
 参考文档：[**由于TCPMSS配置过大导致上网慢**](https://support.huawei.com/enterprise/zh/knowledge/EKB1000052671)
 
+iptables自定义链拦截TCP的SYN报文
+
+~~~shell
+filter表添加新链：IN_TCP_SYN
+iptables -t filter -N IN_TCP_SYN
+查看新加的链
+iptables -nvL |grep IN_TCP_SYN -A 2
+查看新加的链的规则
+iptables -t filter --line -nvL IN_TCP_SYN
+给新链添加拒绝tcpflag的SYN置为为1，其他标志位置为0的规则
+iptables -I IN_TCP_SYN -p tcp -m tcp --tcp-flags SYN,ACK,FIN,RST,URG,PSH SYN -j REJECT
+查看新加的规则
+iptables -t filter --line -nvL IN_TCP_SYN
+INPUT入方向引用新加的链：IN_TCP_SYN
+iptables -I INPUT -d 192.168.137.115 -j IN_TCP_SYN
+iptables -nvL
+
+~~~
+
+
+
 ### 修改IP重启networking不生效的问题
 
 > Ubuntu 16.04 修改interfaces文件之后，重启网络服务之后，地址没有生效
@@ -965,6 +986,8 @@ jhat -J-mx768m -port 7000 heap.dmp
 参考文档：[Jvm dump介绍与使用（内存与线程）](https://www.cnblogs.com/orionhp/p/6362718.html)
 
 ​				 	[Oracle官方jmp资料](http://docs.oracle.com/javase/6/docs/technotes/tools/share/jmap.html)
+
+Java 程序火焰图分析：[排查javacpu利用率问题](#排查javacpu利用率问题)
 
 ## K
 
