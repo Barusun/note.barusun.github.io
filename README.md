@@ -1,4 +1,4 @@
-[Parent](../README.md)
+[Parent](https://github.com/Barusun/note.barusun.github.io)
 
 # The Note of Baru 
 
@@ -7,3 +7,4 @@
 - [Document](docs/document/)
 - [Deployment](docs/deploy)
 
+- [Issue](docs/issue)
