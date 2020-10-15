@@ -151,6 +151,15 @@ docker-ce set on hold.
 docker-ce
 ~~~
 
+### apt源更换
+
+~~~shell
+查看/etc/apt/sources.list中的URL是archive.ubuntu还是cn.archive.ubuntu 
+然后再执行： sudo sed -i 's/cn.archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
+或 sudo sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
+(未验证)
+~~~
+
 
 
 ### AWK命令
@@ -1047,6 +1056,14 @@ show global variables like '%lower_case%';
 set password for 'root'@'localhost'=password('MYSQL123qwe?');
 ~~~
 
+### mtr
+
+> 持续性traceroute一个目的地址
+
+~~~shell
+mtr xx.xx.xx.xx
+~~~
+
 
 
 ## N
@@ -1471,9 +1488,12 @@ idle：类似于simple，但是要等到其他任务都执行完，才会启动�
 expect -c 'spawn su baru;expect "Password";send "123qwe\r";interact'
 ~~~
 
+### sysctl
 
-
-
+~~~shell
+sysctl net.netfilter.nf_conntrack_count
+sysctl net.netfilter.nf_conntrack_max
+~~~
 
 
 
