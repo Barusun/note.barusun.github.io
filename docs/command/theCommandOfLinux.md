@@ -447,6 +447,15 @@ speed_download：下周速度 单位 byte/s
 0.019: client发出请求；到s把响应的数据全部发送给client；并关闭connect的时间
 ~~~
 
+~~~shell
+curl 参数：
+-I 只看状态码；
+-X 使用什么方法；
+-H 自定义HTTP头部 “key_xxx:value_xxx”
+~~~
+
+
+
 ### cat 
 
 ~~~shell
@@ -943,9 +952,11 @@ ifup ens33
 journalctl -f -u kubelet.service
 #查看整个service的日志信息
 journalctl -u kubelet.service
+#从某个时间点开始查看
+journalctl --unit elasticsearch --since  "2016-10-30 18:17:16"
 ~~~
 
-
+- [man journalctl](https://www.freedesktop.org/software/systemd/man/journalctl.html)
 
 ### JDK
 
@@ -1187,11 +1198,13 @@ perf report -i perf.data
 
 ~~~
 
+参考文档：[perf Examples](http://www.brendangregg.com/perf.html)
+
 ~~~shell
 # 火焰图制作
 1、Flame Graph项目位于GitHub上：https://github.com/brendangregg/FlameGraph
 
-2、可以用git将其clone下来：git clone https://github.com/brendangregg/FlameGraph.git
+2、可以用git将其clone下来： clone https://github.com/brendangregg/FlameGraph.git
 我们以perf为例，看一下flamegraph的使用方法：
 1、第一步
 $sudo perf record -e cpu-clock -g -p 28591
@@ -1495,6 +1508,13 @@ sysctl net.netfilter.nf_conntrack_count
 sysctl net.netfilter.nf_conntrack_max
 ~~~
 
+### sar
+
+~~~shell
+sar -n DEV 1 60
+ mpstat 1 60
+~~~
+
 
 
 ## T
@@ -1563,6 +1583,11 @@ vim ifly_cpcc_ad_basic_nocomment.sql  +19
 vim -b filename
 然后
 :%!xxd
+~~~
+
+~~~shell
+#删除所有空格； ‘+’表示一个或者多个
+%s/ \+//g
 ~~~
 
 
