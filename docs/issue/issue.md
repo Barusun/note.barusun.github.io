@@ -125,6 +125,18 @@
    mv /lib/modules/4.4.0-62-generic/kernel/net/ipv4/netfilter/ip_tables.ko /lib/modules/4.4.0-62-generic/kernel/net/ipv4/netfilter/ip_tables.ko.bak
    ```
 
+### 
+
+~~~shell
+* soft nofile 655365
+* hard nofile 655365
+* soft nproc 1030993
+* hard nproc 1030993
+* soft  memlock  unlimited
+* hard memlock  unlimited
+
+~~~
+
 
 
 ### xxx云入口

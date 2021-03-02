@@ -549,6 +549,13 @@ kubectl create secret docker-registry add-gs-secret --namespace=kube-add \
 
 ~~~
 
+~~~shell
+#docker 容器一直运行
+sleep infinity
+~~~
+
+
+
 #### docker打镜像
 
 ~~~shell
@@ -624,8 +631,10 @@ Date: Tue, 11 Dec 2018 01:24:09 GMT
 
 curl -X DELETE http://172.21.51.50:5000/v2/ubuntu/manifests/sha256:8b1e9cd0ef601e055ae19d2e3d855cafc405eab22d3940ebdc745a330bfe7b3f
 
-
-
+4、垃圾回收
+docker exec -it  59de6c752441 sh
+cd /etc/docker/registry
+registry garbage-collect config.yml  #等这句话执行完以后，空间就会释放了
 ~~~
 
 #### redhat&centos7 安装指定docker
@@ -683,6 +692,15 @@ du -sh * --exclude=proc
 ## E
 
 - [Table of Contents](#Table-of-Contents)
+
+### echo 
+
+~~~shell
+#解析\n换行
+echo -e "a\nb" >>1.txt
+~~~
+
+
 
 ### ethool
 
@@ -841,6 +859,8 @@ git clone --depth=1  https://github.com/golang/net.git $GOPATH/src/golang.org/x
 ~~~shell
 ##查看go环境变量
 go env
+#解决go包依赖
+go mod tidy
 ~~~
 
 
@@ -939,6 +959,13 @@ ifdown ens33
 ifup ens33
 ~~~
 
+### 删除虚拟网卡
+
+~~~shell
+ip link set docker0 down
+ip link delete docker0
+~~~
+
 
 
 ## J
@@ -957,6 +984,22 @@ journalctl --unit elasticsearch --since  "2016-10-30 18:17:16"
 ~~~
 
 - [man journalctl](https://www.freedesktop.org/software/systemd/man/journalctl.html)
+
+### jq
+
+~~~shell
+#安装
+Centos:
+# yum -y install jq
+Ubuntu:
+# apt-get -y install jq
+#格式化
+cat json_test.txt | jq
+#取值
+cat json_test.txt | jq '.location.city'
+~~~
+
+[Linux下Json格式化神器jq](http://www.openskill.cn/article/357)
 
 ### JDK
 
@@ -1157,6 +1200,13 @@ nginx：
 
 [官网按指令字母顺序查询](http://nginx.org/en/docs/dirindex.html)
 
+~~~shell
+#nginx gdb调试
+gdb ./sbin/nginx
+~~~
+
+
+
 ## O
 
 - [Table of Contents](#Table-of-Contents)
@@ -1294,6 +1344,15 @@ ps -huH -p 29202  |wc -l
 #查看该进程线程的内存使用情况
 top -Hp 181310
 ~~~
+
+### Prometheus
+
+~~~shell
+#1.  kill -HUP pid
+#2.  curl -X POST http://IP/-/reload
+~~~
+
+
 
 ## Q
 
@@ -1535,6 +1594,15 @@ NTP synchronized: yes
 
 ~~~
 
+### tidb
+
+~~~shell
+#查看dm信息：
+tiup dm display dm-pro
+#查看tidb集群
+tiup cluster display tidb-pro
+~~~
+
 
 
 ### tcpdump命令
@@ -1732,6 +1800,8 @@ docker build -f Dockerfile.add -t harbor.xxx.cn:1443/add-registry/add:xxx_Build1
 
 ~~~shell
 kubectl label node k8s-m1 kubernetes.io/role=master
+#批量打标签
+ kubectl get node |grep '<none>' |awk '{print $1}' |xargs -i  kubectl label node {} kubernetes.io/role=xxx-node
 ~~~
 
 ###  进入容器
